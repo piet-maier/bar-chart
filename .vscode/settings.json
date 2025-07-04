@@ -1,9 +1,15 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "package.json": "bun.lock, .prettierrc"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
   }
 }

@@ -76,12 +76,7 @@ function labels() {
             .attr("dy", "-0.25em")
             .text(({ y }) => y)
             .call((labels) =>
-              labels
-                .append("tspan")
-                .attr("fill-opacity", 0.7)
-                .attr("font-weight", "normal")
-                .attr("x", -6)
-                .attr("dy", "1.15em"),
+              labels.append("tspan").attr("x", -6).attr("dy", "1.15em"),
             ),
         (labels) => labels,
         (labels) =>
@@ -129,14 +124,6 @@ function axis() {
 
   return (transition: d3.Transition<d3.BaseType, unknown, null, undefined>) => {
     groupElement.transition(transition).call(axis);
-
-    groupElement.select(".tick:first-of-type text").remove();
-
-    groupElement
-      .selectAll(".tick:not(:first-of-type) line")
-      .attr("stroke", "white");
-
-    groupElement.select(".domain").remove();
   };
 }
 
@@ -159,19 +146,19 @@ onMounted(() => {
 
 <template>
   <svg
+    class="h-auto max-w-full"
     :height
-    style="max-width: 100%; height: auto"
     :viewBox="'0 0 928 ' + height"
     width="928"
   >
-    <g ref="barRef" fill-opacity="0.6" />
-    <g ref="xAxisRef" transform="translate(0, 16)" />
+    <g
+      ref="xAxisRef"
+      class="translate-y-4 text-neutral-400 [&_.domain]:hidden [&_.tick]:first-of-type:hidden [&_.tick_line]:stroke-neutral-800/50"
+    />
+    <g ref="barRef" class="fill-blue-300" />
     <g
       ref="labelRef"
-      font-family="sans-serif"
-      font-size="12px"
-      font-weight="bold"
-      style="font-variant-numeric: tabular-nums"
+      class="fill-neutral-950 text-xs font-bold tabular-nums [&_tspan]:fill-neutral-800 [&_tspan]:font-normal"
       text-anchor="end"
     />
   </svg>

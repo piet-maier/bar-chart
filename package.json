@@ -3,6 +3,17 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/bar-chart.umd.cjs",
+  "module": "./dist/bar-chart.js",
+  "exports": {
+    ".": {
+      "import": "./dist/bar-chart.js",
+      "require": "./dist/bar-chart.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
@@ -15,6 +26,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",
+    "@types/node": "^24.0.10",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/tsconfig": "^0.7.0",
     "prettier": "^3.6.2",

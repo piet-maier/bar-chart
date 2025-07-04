@@ -44,13 +44,13 @@ function bars() {
             .transition(transition)
             .remove()
             .attr("y", yScale(data.value.length)!)
-            .attr("width", 0)
+            .attr("width", 0),
       )
       .call((bars) =>
         bars
           .transition(transition)
           .attr("y", ({ rank }) => yScale(rank)!)
-          .attr("width", ({ x }) => xScale(x) - xScale(0))
+          .attr("width", ({ x }) => xScale(x) - xScale(0)),
       );
   };
 }
@@ -69,7 +69,7 @@ function labels() {
             .append("text")
             .attr(
               "transform",
-              `translate(${xScale(0)}, ${yScale(data.value.length)})`
+              `translate(${xScale(0)}, ${yScale(data.value.length)})`,
             )
             .attr("x", -6)
             .attr("y", yScale.bandwidth() / 2)
@@ -81,7 +81,7 @@ function labels() {
                 .attr("fill-opacity", 0.7)
                 .attr("font-weight", "normal")
                 .attr("x", -6)
-                .attr("dy", "1.15em")
+                .attr("dy", "1.15em"),
             ),
         (labels) => labels,
         (labels) =>
@@ -90,30 +90,30 @@ function labels() {
             .remove()
             .attr(
               "transform",
-              `translate(${xScale(0)}, ${yScale(data.value.length)})`
+              `translate(${xScale(0)}, ${yScale(data.value.length)})`,
             )
             .call((labels) =>
               labels.select("tspan").textTween(({ x }) => {
                 const interpolator = d3.interpolateRound(x, 0);
 
                 return (number: number) => interpolator(number).toString();
-              })
-            )
+              }),
+            ),
       )
       .call((labels) =>
         labels
           .transition(transition)
           .attr(
             "transform",
-            ({ x, rank }) => `translate(${xScale(x)}, ${yScale(rank)})`
+            ({ x, rank }) => `translate(${xScale(x)}, ${yScale(rank)})`,
           )
           .call((labels) =>
             labels.select("tspan").textTween(
               ({ x }) =>
                 (time) =>
-                  formatNumber(d3.interpolateNumber(0, x)(time))
-            )
-          )
+                  formatNumber(d3.interpolateNumber(0, x)(time)),
+            ),
+          ),
       );
   };
 }
